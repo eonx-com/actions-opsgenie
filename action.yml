@@ -21,6 +21,6 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.alias }}
-    - ${{ inputs.priority }}
     - ${{ inputs.message }}
+    - ${{ inputs.priority }}
     - ${{ inputs.api_key }}

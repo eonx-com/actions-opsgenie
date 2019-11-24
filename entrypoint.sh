@@ -20,7 +20,7 @@ fi
 
 # Make sure an acceptable priority level was defined
 if [[ "P1" != "${PRIORITY}" ]] && [[ "P2" != "${PRIORITY}" ]] && [[ "P3" != "${PRIORITY}" ]] && [[ "P4" != "${PRIORITY}" ]] && [[ "P5" != "${PRIORITY}" ]]; then
-    echo "ERROR: An invalid priority level was set, it must be one of the valid OpsGenie alert levels (P1-P5)"
+    echo "ERROR: An invalid priority level (${PRIORITY}) was set, it must be one of the valid OpsGenie alert levels (P1-P5)"
     exit 3;
 fi
 

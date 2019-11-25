@@ -19,3 +19,30 @@ This Github action can be used to send an alert to OpsGenie using the OpsGenie A
 * API_KEY
 
   The OpsGenie API key (this will need to be pre-configured via the OpsGenie website)
+  
+  
+#### Example Usage
+
+The following example shows how the action can be used in a Github workflow file.
+
+```yaml
+name: OpsGenie Alert Example
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy-production-started:
+    name: Send OpsGenie Alert
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate Alert
+        uses: eonx-labs/action-opsgenie-alert@master
+        with:
+          ALIAS: 'devops-pingdom-production'
+          MESSAGE: 'Deployment of Rewards PHP to production started'
+          PRIORITY: 'P5'
+          API_KEY: ${{ secrets.OPSGENIE_API_KEY }}
+```

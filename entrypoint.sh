@@ -25,7 +25,7 @@ if [[ "P1" != "${PRIORITY}" ]] && [[ "P2" != "${PRIORITY}" ]] && [[ "P3" != "${P
 fi
 
 # Send alert via curl request to OpsGenie API
-curl -X POST https://api.opsgenie.com/v2/alerts \
+STATUS_CODE=$(curl -s -o /dev/null -w '%{http_code}' -X POST https://api.opsgenie.com/v2/alerts \
     -H "Host: api.opsgenie.com" \
     -H "Authorization: Basic ${OPSGENIE_API_KEY}" \
     -H "User-Agent: EonxGitops/1.0.0" \
@@ -47,4 +47,10 @@ curl -X POST https://api.opsgenie.com/v2/alerts \
             \"alias\": \"${ALIAS}\", \
             \"message\": \"${MESSAGE}\", \
             \"priority\": \"${PRIORITY}\" \
-        }"
+        }")
+
+# Validate status code
+if [[ "${STATUS_CODE}" != "201" ]]; then
+  echo "ERROR: HTTP response code ${STATUS_CODE} received, expected HTTP 201"
+  exit 1
+fi

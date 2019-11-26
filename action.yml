@@ -1,20 +1,20 @@
-name:         'eonx-labs/actions-opsgenie-alert'
-description:  'Send an alert using OpsGenie API V2'
-author:       'Damian Sloane <damian.sloane@eonx.com>'
+name:           'eonx-labs/actions-opsgenie-alert'
+description:    'Send an alert using OpsGenie API V2'
+author:         'Damian Sloane <damian.sloane@eonx.com>'
 
 inputs:
   alias:
     description: 'Unique identifier for this type of alert (used to de-duplicate alerts)'
-    required: true
+    required:     true
   priority:
     description: 'Alert priority level (one of the P1-P5 OpsGenie alert levels)'
-    required: true
+    required:     true
   message:
     description: 'Message to attach to the alert'
-    required: true
+    required:     true
   api_key:
     description: 'OpsGenie API Key'
-    required: true
+    required:     true
 
 runs:
   using: 'docker'

@@ -1,20 +1,20 @@
-# Github Action: Create OpsGenie Alert
+# Github Actions: OpsGenie
 
-This Github action can be used to send an alert to OpsGenie using the OpsGenie API V2
+This Github action can be used to generate alert to OpsGenie by generating a CURL request to the OpsGenie API.
 
 #### Required Parameters
 
 * ALIAS
          
-  User defined identifier for the alert (used to de-duplicate alerts)
+  User defined identifier for the alert (this is used by OpsGenie to de-duplicate alerts)
 
 * MESSAGE       
 
-  The content of the alert
+  The content of the alert message
 
 * PRIORITY      
 
-  The priority level of the alert (one of: P1, P2, P3, P4, P5)
+  The priority level of the alert (one of the pre-defined OpsGenie levels: P1, P2, P3, P4, P5)
   
 * API_KEY
 
@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Generate Alert
-        uses: eonx-labs/action-opsgenie-alert@master
+        uses: eonx-com/actions-opsgenie@master
         with:
           ALIAS: 'devops-pingdom-production'
           MESSAGE: 'Deployment of Rewards PHP to production started'

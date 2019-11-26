@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send OpsGenie Alert
-        uses: eonx-com/actions-opsgenie@vlatest
+        uses: eonx-com/actions-opsgenie@master
         with:
           API_KEY: ${{ secrets.OPSGENIE_API_KEY }}
           PRIORITY: 'P5'
@@ -61,7 +61,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send OpsGenie Alert
-        uses: eonx-com/actions-opsgenie@vlatest
+        uses: eonx-com/actions-opsgenie@master
         with:
           API_KEY: ${{ secrets.OPSGENIE_API_KEY }}
           PRIORITY: 'P5'
@@ -75,7 +75,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send OpsGenie Alert
-        uses: eonx-com/actions-opsgenie@latest
+        uses: eonx-com/actions-opsgenie@master
         with:
           API_KEY: ${{ secrets.OPSGENIE_API_KEY }}
           PRIORITY: 'P1'

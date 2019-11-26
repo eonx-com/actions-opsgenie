@@ -58,7 +58,7 @@ STATUS_CODE=$(curl -s \
         }")
 
 # Validate status code
-if [[ "${STATUS_CODE}" != "201" ]]; then
+if [[ "${STATUS_CODE}" != "200" ]] && [[ "${STATUS_CODE}" != "201" ]] && [[ "${STATUS_CODE}" != "202" ]]; then
   echo "ERROR: HTTP response code ${STATUS_CODE} received, expected HTTP 201"
   exit 1
 fi

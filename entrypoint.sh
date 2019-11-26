@@ -27,7 +27,6 @@ fi
 echo "Alias: ${ALIAS}"
 echo "Message: ${MESSAGE}"
 echo "Priority: ${PRIORITY}"
-echo "API Key: ${OPSGENIE_API_KEY}"
 
 # Send alert via curl request to OpsGenie API
 STATUS_CODE=$(curl -s \

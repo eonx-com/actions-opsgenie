@@ -22,10 +22,11 @@ This Github action can be used to generate alert to OpsGenie by generating a CUR
     
 #### Example Usage
 
-The following example shows how the action can be used in a Github workflow file.
+The following example shows how the action can be used in a Github workflow file. This sends a P5 notification on start
+of deployment, and then generates another P5 notification on successful deployment- or a P1 alert on failure
 
 ```yaml
-name: OpsGenie Alert Example
+name: Deploy Production Environment
 
 on:
   push:
@@ -33,15 +34,51 @@ on:
       - master
 
 jobs:
-  deploy-production-started:
-    name: Send OpsGenie Alert
+  deploy-production-start:
+    name: Start Notification
     runs-on: ubuntu-latest
     steps:
-      - name: Generate Alert
-        uses: eonx-com/actions-opsgenie@v1.1
+      - name: Send OpsGenie Alert
+        uses: eonx-com/actions-opsgenie@vlatest
         with:
-          ALIAS: 'devops-pingdom-production'
-          MESSAGE: 'Deployment of Rewards PHP to production started'
-          PRIORITY: 'P5'
           API_KEY: ${{ secrets.OPSGENIE_API_KEY }}
+          PRIORITY: 'P5'
+          ALIAS: 'deploy-production'
+          MESSAGE: 'Deployment to production started'
+
+  deploy-production:
+    name: Deploy (Production)
+    runs-on: ubuntu-latest
+    steps:
+      ...
+      Deployment logic here
+      ...
+
+  deploy-production-success:
+    name: Success Notification
+    needs: deploy-production
+    if: success()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send OpsGenie Alert
+        uses: eonx-com/actions-opsgenie@vlatest
+        with:
+          API_KEY: ${{ secrets.OPSGENIE_API_KEY }}
+          PRIORITY: 'P5'
+          ALIAS: 'deploy-production'
+          MESSAGE: 'Deployment to production completed successfully'
+
+  deploy-production-failed:
+    name: Failed Notification
+    needs: deploy-production
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send OpsGenie Alert
+        uses: eonx-com/actions-opsgenie@latest
+        with:
+          API_KEY: ${{ secrets.OPSGENIE_API_KEY }}
+          PRIORITY: 'P1'
+          ALIAS: 'deploy-production-failed'
+          MESSAGE: 'Deployment to production failed. please review Github Actions logs'
 ```

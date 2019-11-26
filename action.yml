@@ -1,4 +1,4 @@
-name: 'eonx-labs/actions-opsgenie-alert'
+name: 'eonx-com/actions-opsgenie-alert'
 description: 'Send an alert using OpsGenie API V2'
 author: 'Damian Sloane <damian.sloane@eonx.com>'
 

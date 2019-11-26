@@ -19,8 +19,7 @@ This Github action can be used to generate alert to OpsGenie by generating a CUR
 * API_KEY
 
   The OpsGenie API key (this will need to be pre-configured via the OpsGenie website)
-  
-  
+    
 #### Example Usage
 
 The following example shows how the action can be used in a Github workflow file.
@@ -39,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Generate Alert
-        uses: eonx-com/actions-opsgenie@master
+        uses: eonx-com/actions-opsgenie@v1.1
         with:
           ALIAS: 'devops-pingdom-production'
           MESSAGE: 'Deployment of Rewards PHP to production started'

@@ -19,6 +19,12 @@ This Github action can be used to generate alert to OpsGenie by generating a CUR
 * API_KEY
 
   The OpsGenie API key (this will need to be pre-configured via the OpsGenie website)
+
+#### Optional Parameters
+
+* USE_EU_INSTANCE
+
+  Use the EU instance of OpsGenie
     
 #### Example Usage
 

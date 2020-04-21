@@ -19,6 +19,9 @@ inputs:
   api_key:
     description: 'OpsGenie API Key'
     required: true
+  use_eu_instance:
+    description: 'Use EU instance'
+    required: false
 
 runs:
   using: 'docker'
@@ -28,3 +31,4 @@ runs:
     - ${{ inputs.message }}
     - ${{ inputs.priority }}
     - ${{ inputs.api_key }}
+    - ${{ inputs.use_eu_instance }}

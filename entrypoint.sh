@@ -5,6 +5,7 @@ ALIAS=${1}
 MESSAGE=${2}
 PRIORITY=${3}
 OPSGENIE_API_KEY=${4}
+USE_EU_INSTANCE=${5:-}
 
 # Make sure a message was defined
 if [[ -z "${MESSAGE}" ]]; then
@@ -28,13 +29,18 @@ echo "Alias: ${ALIAS}"
 echo "Message: ${MESSAGE}"
 echo "Priority: ${PRIORITY}"
 
+HOST="api.opsgenie.com"
+if [[ -n "${USE_EU_INSTANCE}" ]]; then
+  HOST="api.eu.opsgenie.com"
+fi
+
 # Send alert via curl request to OpsGenie API
 STATUS_CODE=$(curl -s \
     -o /dev/null \
     -w '%{http_code}' \
-    -X POST https://api.opsgenie.com/v2/alerts \
-    -H "Host: api.opsgenie.com" \
-    -H "Authorization: Basic ${OPSGENIE_API_KEY}" \
+    -X POST "https://${HOST}/v2/alerts" \
+    -H "Host: ${HOST}" \
+    -H "Authorization: GenieKey ${OPSGENIE_API_KEY}" \
     -H "User-Agent: EonxGitops/1.0.0" \
     -H "cache-control: no-cache" \
     -H "Content-Type: application/json" \

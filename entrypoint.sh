@@ -40,7 +40,7 @@ STATUS_CODE=$(curl -s \
     -w '%{http_code}' \
     -X POST "https://${HOST}/v2/alerts" \
     -H "Host: ${HOST}" \
-    -H "Authorization: Basic ${OPSGENIE_API_KEY}" \
+    -H "Authorization: GenieKey ${OPSGENIE_API_KEY}" \
     -H "User-Agent: EonxGitops/1.0.0" \
     -H "cache-control: no-cache" \
     -H "Content-Type: application/json" \

@@ -53,7 +53,8 @@ STATUS_CODE=$(curl -s \
             },
             \"alias\": \"${ALIAS}\",
             \"message\": \"${MESSAGE}\",
-            \"priority\": \"${PRIORITY}\"
+            \"priority\": \"${PRIORITY}\",
+            \"tags\": \"${TAGS}\"
         }")
 
 # Validate status code

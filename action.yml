@@ -19,6 +19,10 @@ inputs:
   api_key:
     description: 'OpsGenie API Key'
     required: true
+  tags:
+    description: 'Optional tags to add the the alert'
+    required: false
+    default: ''
 
 runs:
   using: 'docker'
@@ -28,3 +32,4 @@ runs:
     - ${{ inputs.message }}
     - ${{ inputs.priority }}
     - ${{ inputs.api_key }}
+    - ${{ inputs.tags }}
